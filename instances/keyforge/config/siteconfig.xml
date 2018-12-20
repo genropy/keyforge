@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <GenRoBag>
-	<wsgi mainpackage="ktfm"/>
+	<wsgi mainpackage="kftm"/>
 	<connection_timeout/>
 	<connection_refresh/>
 	<dojo version="11"/>
