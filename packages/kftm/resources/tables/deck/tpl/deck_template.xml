@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<GenRoBag><metadata><email><subject _T="NN"></subject>
+<to_address _T="NN"></to_address>
+<from_address _T="NN"></from_address>
+<cc_address _T="NN"></cc_address>
+<bcc_address _T="NN"></bcc_address>
+<attachments _T="NN"></attachments></email></metadata>
+<varsbag><f7holazyrl _pkey="f7holazyrl"><fieldpath>name</fieldpath>
+<dtype dtype="::NN">A</dtype>
+<fieldname dtype="::NN">Deck name</fieldname>
+<varname dtype="::NN">deck_name</varname>
+<virtual_column _T="NN"></virtual_column>
+<required_columns _T="NN"></required_columns>
+<df_template _T="NN"></df_template>
+<format _T="NN" dtype="::NN"></format>
+<mask _T="NN" dtype="::NN"></mask>
+<editable _T="NN" dtype="::NN"></editable></f7holazyrl>
+<f7hombno0x _pkey="f7hombno0x"><fieldpath>chains</fieldpath>
+<dtype dtype="::NN">I</dtype>
+<fieldname dtype="::NN">Chains</fieldname>
+<varname dtype="::NN">chains</varname>
+<virtual_column _T="NN"></virtual_column>
+<required_columns _T="NN"></required_columns>
+<df_template _T="NN"></df_template>
+<format _T="NN" dtype="::NN"></format>
+<mask _T="NN" dtype="::NN"></mask>
+<editable _T="NN" dtype="::NN"></editable></f7hombno0x>
+<f7homcb8sh _pkey="f7homcb8sh"><fieldpath>power_level</fieldpath>
+<dtype dtype="::NN">I</dtype>
+<fieldname dtype="::NN">Power level</fieldname>
+<varname dtype="::NN">power_level</varname>
+<virtual_column _T="NN"></virtual_column>
+<required_columns _T="NN"></required_columns>
+<df_template _T="NN"></df_template>
+<format _T="NN" dtype="::NN"></format>
+<mask _T="NN" dtype="::NN"></mask>
+<editable _T="NN" dtype="::NN"></editable></f7homcb8sh>
+<f7homd85z5 _pkey="f7homd85z5"><fieldpath>kf_id</fieldpath>
+<dtype dtype="::NN">A</dtype>
+<fieldname dtype="::NN">KF ID</fieldname>
+<varname dtype="::NN">kf_id</varname>
+<virtual_column _T="NN"></virtual_column>
+<required_columns _T="NN"></required_columns>
+<df_template _T="NN"></df_template>
+<format _T="NN" dtype="::NN"></format>
+<mask _T="NN" dtype="::NN"></mask>
+<editable _T="NN" dtype="::NN"></editable></f7homd85z5>
+<f7hoor1kc9 _pkey="f7hoor1kc9"><fieldpath>houses</fieldpath>
+<dtype dtype="::NN">T</dtype>
+<fieldname dtype="::NN">Houses</fieldname>
+<varname dtype="::NN">houses</varname>
+<virtual_column _T="B">True</virtual_column>
+<required_columns _T="NN"></required_columns>
+<df_template _T="NN"></df_template>
+<format _T="NN" dtype="::NN"></format>
+<mask _T="NN" dtype="::NN"></mask>
+<editable _T="NN" dtype="::NN"></editable></f7hoor1kc9>
+<f7hpkadi01 _pkey="f7hpkadi01"><fieldpath>n_creatures</fieldpath>
+<dtype dtype="::NN">I</dtype>
+<fieldname dtype="::NN">N.Creatures</fieldname>
+<varname dtype="::NN">n_creatures</varname>
+<virtual_column _T="B">True</virtual_column>
+<required_columns _T="NN"></required_columns>
+<df_template _T="NN"></df_template>
+<format _T="NN" dtype="::NN"></format>
+<mask _T="NN" dtype="::NN"></mask>
+<editable _T="NN" dtype="::NN"></editable></f7hpkadi01>
+<f7hpkb6fo1 _pkey="f7hpkb6fo1"><fieldpath>n_artifacts</fieldpath>
+<dtype dtype="::NN">I</dtype>
+<fieldname dtype="::NN">N.Artifacts</fieldname>
+<varname dtype="::NN">n_artifacts</varname>
+<virtual_column _T="B">True</virtual_column>
+<required_columns _T="NN"></required_columns>
+<df_template _T="NN"></df_template>
+<format _T="NN" dtype="::NN"></format>
+<mask _T="NN" dtype="::NN"></mask>
+<editable _T="NN" dtype="::NN"></editable></f7hpkb6fo1>
+<f7hpkc2qh5 _pkey="f7hpkc2qh5"><fieldpath>n_actions</fieldpath>
+<dtype dtype="::NN">I</dtype>
+<fieldname dtype="::NN">N.Actions</fieldname>
+<varname dtype="::NN">n_actions</varname>
+<virtual_column _T="B">True</virtual_column>
+<required_columns _T="NN"></required_columns>
+<df_template _T="NN"></df_template>
+<format _T="NN" dtype="::NN"></format>
+<mask _T="NN" dtype="::NN"></mask>
+<editable _T="NN" dtype="::NN"></editable></f7hpkc2qh5>
+<f7hpkcy5nd _pkey="f7hpkcy5nd"><fieldpath>n_upgrades</fieldpath>
+<dtype dtype="::NN">I</dtype>
+<fieldname dtype="::NN">N.Upgrades</fieldname>
+<varname dtype="::NN">n_upgrades</varname>
+<virtual_column _T="B">True</virtual_column>
+<required_columns _T="NN"></required_columns>
+<df_template _T="NN"></df_template>
+<format _T="NN" dtype="::NN"></format>
+<mask _T="NN" dtype="::NN"></mask>
+<editable _T="NN" dtype="::NN"></editable></f7hpkcy5nd>
+<f7hpke3i2p _pkey="f7hpke3i2p"><fieldpath>tot_amber</fieldpath>
+<dtype dtype="::NN">I</dtype>
+<fieldname dtype="::NN">Tot.Amber</fieldname>
+<varname dtype="::NN">tot_amber</varname>
+<virtual_column _T="B">True</virtual_column>
+<required_columns _T="NN"></required_columns>
+<df_template _T="NN"></df_template>
+<format _T="NN" dtype="::NN"></format>
+<mask _T="NN" dtype="::NN"></mask>
+<editable _T="NN" dtype="::NN"></editable></f7hpke3i2p>
+<f7hpkeuz9t _pkey="f7hpkeuz9t"><fieldpath>avg_amber</fieldpath>
+<dtype dtype="::NN">N</dtype>
+<fieldname dtype="::NN">Avg.Amber</fieldname>
+<varname dtype="::NN">avg_amber</varname>
+<virtual_column _T="B">True</virtual_column>
+<required_columns _T="NN"></required_columns>
+<df_template _T="NN"></df_template>
+<format _T="NN" dtype="::NN"></format>
+<mask _T="NN" dtype="::NN"></mask>
+<editable _T="NN" dtype="::NN"></editable></f7hpkeuz9t>
+<f7hpkfjy6x _pkey="f7hpkfjy6x"><fieldpath>avg_cr_power</fieldpath>
+<dtype dtype="::NN">N</dtype>
+<fieldname dtype="::NN">Avg.Power</fieldname>
+<varname dtype="::NN">avg_power</varname>
+<virtual_column _T="B">True</virtual_column>
+<required_columns _T="NN"></required_columns>
+<df_template _T="NN"></df_template>
+<format _T="NN" dtype="::NN"></format>
+<mask _T="NN" dtype="::NN"></mask>
+<editable _T="NN" dtype="::NN"></editable></f7hpkfjy6x>
+<f7hpkgi4wh _pkey="f7hpkgi4wh"><fieldpath>avg_cr_armor</fieldpath>
+<dtype dtype="::NN">N</dtype>
+<fieldname dtype="::NN">Avg.Armor</fieldname>
+<varname dtype="::NN">avg_armor</varname>
+<virtual_column _T="B">True</virtual_column>
+<required_columns _T="NN"></required_columns>
+<df_template _T="NN"></df_template>
+<format _T="NN" dtype="::NN"></format>
+<mask _T="NN" dtype="::NN"></mask>
+<editable _T="NN" dtype="::NN"></editable></f7hpkgi4wh>
+<f7hpw2ef1d _pkey="f7hpw2ef1d"><fieldpath>@deck_houses.@house.image</fieldpath>
+<dtype dtype="::NN">A</dtype>
+<fieldname dtype="::NN">Deck houses/House/Image</fieldname>
+<varname dtype="::NN">deck_houses_house_image</varname>
+<virtual_column _T="NN"></virtual_column>
+<required_columns _T="NN"></required_columns>
+<df_template _T="NN"></df_template>
+<format _T="NN" dtype="::NN"></format>
+<mask _T="NN" dtype="::NN"></mask>
+<editable _T="NN" dtype="::NN"></editable></f7hpw2ef1d></varsbag>
+<content>&lt;p style="text-align: center;"&gt;
+	&lt;strong&gt;&lt;span style="font-size:18px;"&gt;&lt;span style="font-size:20px;"&gt;$deck_name&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div&gt;
+	&amp;nbsp;&lt;/div&gt;
+&lt;table cellpadding="1" cellspacing="1" style="border-collapse:collapse;width:550px;"&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;
+				&lt;span style="font-size:12px;"&gt;&lt;b style="font-size: 12px;"&gt;Houses:&amp;nbsp;&lt;/b&gt;$houses&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;
+			&lt;td&gt;
+				&lt;strong style="font-size: 12px;"&gt;N.Creatures:&amp;nbsp;&lt;/strong&gt;$n_creatures&lt;/td&gt;
+			&lt;td&gt;
+				&lt;strong&gt;Cr.Pow:&lt;/strong&gt; $avg_power&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;
+				&lt;b style="font-size: 12px;"&gt;KF ID:&amp;nbsp;&lt;/b&gt;&lt;span style="font-size:9px;"&gt;&lt;em&gt;$kf_id&lt;/em&gt;&lt;/span&gt;&lt;/td&gt;
+			&lt;td&gt;
+				&lt;strong&gt;N.Actions:&lt;/strong&gt; $n_actions&lt;/td&gt;
+			&lt;td&gt;
+				&lt;strong&gt;Cr.Armor:&amp;nbsp;&lt;/strong&gt;$avg_armor&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;
+				&lt;strong style="text-align: right;"&gt;Tot AE:&amp;nbsp;&amp;nbsp;&lt;/strong&gt;&lt;span style="text-align: right;"&gt;$tot_amber&lt;/span&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+			&lt;td&gt;
+				&lt;strong&gt;N.Artifacts:&lt;/strong&gt; $n_artifacts&lt;/td&gt;
+			&lt;td&gt;
+				&amp;nbsp;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;
+				&lt;strong style="text-align: right;"&gt;Average AE:&amp;nbsp;&lt;/strong&gt;$avg_amber&lt;/td&gt;
+			&lt;td&gt;
+				&lt;strong&gt;N.Upgrades:&lt;/strong&gt; $n_upgrades&lt;/td&gt;
+			&lt;td&gt;
+				&amp;nbsp;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;
+	&amp;nbsp;&lt;/p&gt;</content>
+<compiled><main virtual_columns="houses,n_creatures,n_artifacts,n_actions,n_upgrades,tot_amber,avg_amber,avg_cr_power,avg_cr_armor" locale="it" masks="{}::JS" dtypes='{"kf_id": "A", "avg_armor": "N", "n_creatures": "I", "n_artifacts": "I", "deck_name": "A", "avg_power": "N", "houses": "T", "tot_amber": "I", "avg_amber": "N", "deck_houses_house_image": "A", "n_upgrades": "I", "power_level": "I", "chains": "I", "n_actions": "I"}::JS' maintable="kftm.deck" columns="$name,$chains,$power_level,$kf_id,$houses,$n_creatures,$n_artifacts,$n_actions,$n_upgrades,$tot_amber,$avg_amber,$avg_cr_power,$avg_cr_armor,@deck_houses.@house.image" formats="{}::JS" editcols="{}::JS" df_templates="{}::JS">&lt;html&gt;&lt;body&gt;&lt;p style="text-align: center;"&gt;
+	&lt;strong&gt;&lt;span style="font-size:18px;"&gt;&lt;span style="font-size:20px;"&gt;$name&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;div&gt;
+	&amp;#160;&lt;/div&gt;
+&lt;table cellpadding="1" cellspacing="1" style="border-collapse:collapse;width:550px;"&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;
+				&lt;span style="font-size:12px;"&gt;&lt;b style="font-size: 12px;"&gt;Houses:&amp;#160;&lt;/b&gt;$houses&lt;/span&gt;&amp;#160;&amp;#160;&lt;/td&gt;
+			&lt;td&gt;
+				&lt;strong style="font-size: 12px;"&gt;N.Creatures:&amp;#160;&lt;/strong&gt;$n_creatures&lt;/td&gt;
+			&lt;td&gt;
+				&lt;strong&gt;Cr.Pow:&lt;/strong&gt; $avg_cr_power&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;
+				&lt;b style="font-size: 12px;"&gt;KF ID:&amp;#160;&lt;/b&gt;&lt;span style="font-size:9px;"&gt;&lt;em&gt;$kf_id&lt;/em&gt;&lt;/span&gt;&lt;/td&gt;
+			&lt;td&gt;
+				&lt;strong&gt;N.Actions:&lt;/strong&gt; $n_actions&lt;/td&gt;
+			&lt;td&gt;
+				&lt;strong&gt;Cr.Armor:&amp;#160;&lt;/strong&gt;$avg_cr_armor&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;
+				&lt;strong style="text-align: right;"&gt;Tot AE:&amp;#160;&amp;#160;&lt;/strong&gt;&lt;span style="text-align: right;"&gt;$tot_amber&lt;/span&gt;&amp;#160; &amp;#160;&lt;/td&gt;
+			&lt;td&gt;
+				&lt;strong&gt;N.Artifacts:&lt;/strong&gt; $n_artifacts&lt;/td&gt;
+			&lt;td&gt;
+				&amp;#160;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;
+				&lt;strong style="text-align: right;"&gt;Average AE:&amp;#160;&lt;/strong&gt;$avg_amber&lt;/td&gt;
+			&lt;td&gt;
+				&lt;strong&gt;N.Upgrades:&lt;/strong&gt; $n_upgrades&lt;/td&gt;
+			&lt;td&gt;
+				&amp;#160;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;
+	&amp;#160;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</main></compiled></GenRoBag>
