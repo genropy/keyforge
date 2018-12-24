@@ -10,12 +10,15 @@ from time import sleep
 
 class View(BaseComponent):
 
+    #def th_hiddencolumns(self):
+    #    return '$players,$cards,$traits'
+
     def th_struct(self,struct):
         r = struct.view().rows()
         r.fieldcell('name', width='25em')
         #r.fieldcell('power_level' )
         #r.fieldcell('chains' )
-        r.fieldcell('houses', width='25em')
+        r.fieldcell('houses', width='18em')
         r.fieldcell('n_creatures')
         r.fieldcell('n_artifacts')
         r.fieldcell('n_actions')
@@ -29,7 +32,7 @@ class View(BaseComponent):
         r.fieldcell('lost_matches')
         r.fieldcell('victory_rate')
         r.fieldcell('avg_keys')
-        
+        r.fieldcell('players', width='100%')
         
         
 
@@ -37,13 +40,14 @@ class View(BaseComponent):
         return 'name'
 
     def th_query(self):
-        return dict(column='kf_id', op='contains', val='')
+        return dict(column='name', op='contains', val='')
 
     def th_queryBySample(self):
-        return dict(fields=[dict(field='name',lbl='Name',width='15em'),
-                            dict(field='houses',lbl='Houses',width='15em'),
-                            dict(field='players',lbl='Players',width='15em'),
-                            dict(field='card',lbl='Card',width='15em')], cols=4, isDefault=True)
+        return dict(fields=[dict(field='name',lbl='Name',width='10em'),
+                            dict(field='houses',lbl='Houses',width='10em'),
+                            dict(field='players',lbl='Players',width='10em'),
+                            dict(field='cards',lbl='Cards',width='15em'),
+                            dict(field='deck_traits',lbl='Traits',width='10em')], cols=5, isDefault=True)
 
 
 

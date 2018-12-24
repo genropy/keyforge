@@ -29,8 +29,8 @@ class Form(BaseComponent):
         
 
         centerTc = bc.tabContainer(region='center', margin='5px')
-        self.decksPane(centerTc.contentPane(title='Decks'))
-        self.resultsPane(centerTc.contentPane(title='Results'))
+        self.playerDecksPane(centerTc.contentPane(title='Decks'))
+        self.playerResultsPane(centerTc.contentPane(title='Results'))
 
     def topBc(self, bc):
         player_form= bc.contentPane(region='left', datapath='.record').div(margin_right='10px')
@@ -47,13 +47,15 @@ class Form(BaseComponent):
                         newRecordOnly=False,
                         margin='2px')
 
-    def resultsPane(self, pane):
+    def playerResultsPane(self, pane):
         pane.plainTableHandler(table='kftm.match', condition='$win_player=:player OR $lose_player=:player',
                                 condition_player='^#FORM.pkey',
-                                viewResource='ViewFromPlayer', formResource='Form',
+                                nodeId='player_matches',
+                                viewResource='ViewFromPlayer',
+                                formResource='Form',
                                 title='My Results')
 
-    def decksPane(self, pane):
+    def playerDecksPane(self, pane):
         pane.dialogTableHandler(relation='@decks',
                                 viewResource='ViewFromPlayer', title='My Decks')
 

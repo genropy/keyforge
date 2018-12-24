@@ -20,6 +20,7 @@ class Table(object):
         tbl.column('lose_keys',dtype='I',name_long='L.Keys', validate_notnull=True)
         tbl.column('win_chains',dtype='I',name_long='W.Chains')
         tbl.column('lose_chains',dtype='I',name_long='L.Chains')
+        tbl.column('tournament_id',name_long='Tournament').relation('kftm.tournament.id',relation_name='results', mode='foreignkey')
 
         #tbl.formulaColumn('involved_houses', select=dict(table='kftm.house', columns='$house', where='@decks.deck_id=#THIS.win_deck OR @decks.deck_id=#THIS.lose_deck', group_by='$house', distinct='$house'), name_long='Involved houses')
         tbl.formulaColumn('houses_title', "@win_deck_id.houses||' VS '||@lose_deck_id.houses", name_long='Houses')

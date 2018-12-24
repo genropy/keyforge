@@ -34,6 +34,9 @@ class Table(object):
         tbl.column('lost_matches', dtype = 'L', name_long = 'N.Lost')
         tbl.column('tot_keys', dtype = 'L', name_long = 'Tot.Keys')
 
+        tbl.aliasColumn('players', '@players.player', name_long='Players')
+        tbl.aliasColumn('cards', '@cards.card_title', name_long='Cards')
+
         tbl.formulaColumn('victory_rate', '$won_matches/$tot_matches', dtype = 'N', name_long = 'Victory rate')
         tbl.formulaColumn('avg_keys', '$tot_keys/$tot_matches', dtype = 'N', name_long = 'Avg Keys')
 
