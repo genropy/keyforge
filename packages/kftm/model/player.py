@@ -17,6 +17,9 @@ class Table(object):
         tbl.formulaColumn('frm_won_matches', select=dict(columns='COUNT(*)', table='kftm.match', where='$win_player=#THIS.nickname'), dtype='N', name_long='Won Matches (FRM)')
         tbl.formulaColumn('frm_lost_matches', select=dict(columns='COUNT(*)', table='kftm.match', where='$lose_player=#THIS.nickname'), dtype='N', name_long='Lost Matches (FRM)')
         tbl.formulaColumn('frm_tot_keys', select=dict(columns='SUM($win_keys)+SUM($lose_keys)', table='kftm.match', where='$win_player=#THIS.nickname OR $lose_player=#THIS.nickname'), dtype='N', name_long='Tot keys (FRM)')
+        tbl.formulaColumn('victory_rate', 'CASE WHEN $tot_matches!=0 THEN $won_matches/$tot_matches ELSE 0 END', dtype = 'N', name_long = 'Victory rate')
+        tbl.formulaColumn('avg_keys', 'CASE WHEN $tot_matches!=0 THEN $tot_keys/$tot_matches ELSE 0 END', dtype = 'N', name_long = 'Avg Keys')
+
 
 
     def updateTotals(self, match_record):

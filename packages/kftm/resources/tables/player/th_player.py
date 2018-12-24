@@ -13,6 +13,12 @@ class View(BaseComponent):
         r.fieldcell('nickname')
         r.fieldcell('firstname')
         r.fieldcell('lastname')
+        r.fieldcell('tot_matches', name = 'Nr.Tot')
+        r.fieldcell('won_matches', name = 'Won')
+        r.fieldcell('lost_matches', name = 'Lost')
+        r.fieldcell('tot_keys', name = 'Tot.Keys')
+        r.fieldcell('victory_rate')
+        r.fieldcell('avg_keys')
 
     def th_order(self):
         return 'nickname'

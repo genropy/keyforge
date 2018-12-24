@@ -20,6 +20,8 @@ class View(BaseComponent):
 
 
 class ViewFromPlayer(BaseComponent):
+
+    py_requires='deck_importer:DeckImporter'
     
     def th_struct(self,struct):
         r = struct.view().rows()
@@ -46,7 +48,7 @@ class ViewFromPlayer(BaseComponent):
 
 
 class Form(BaseComponent):
-    py_requires='deck_importer'
+    py_requires='deck_importer:DeckImporter'
 
     def th_form(self, form):
         bc=form.center.borderContainer(datapath='#FORM')

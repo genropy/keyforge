@@ -16,6 +16,7 @@ class GnrCustomWebPage(object):
 
         tc.contentPane(title='Matches & Results', background_color='white').remote('resultsPane',_waitingMessage=True)
         tc.contentPane(title='Decks', background_color='white').remote(self.decksPane,_waitingMessage=True)
+        tc.contentPane(title='Players', background_color='white').remote(self.playersPane,_waitingMessage=True)
         self.prepareBottom(main_bc)
 
     @public_method
@@ -31,6 +32,16 @@ class GnrCustomWebPage(object):
         pane.plainTableHandler(datapath='all_decks',
                                nodeId='all_decks', 
                                table='kftm.deck',
+                               extendedQuery=True,
+                               virtualStore=True,
+                               view_store__onBuilt=True,
+                               viewResource='View')
+
+    @public_method
+    def playersPane(self, pane,**kwargs):
+        pane.plainTableHandler(datapath='all_players',
+                               nodeId='all_players', 
+                               table='kftm.player',
                                extendedQuery=True,
                                virtualStore=True,
                                view_store__onBuilt=True,
