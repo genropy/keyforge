@@ -24,12 +24,26 @@ class View(BaseComponent):
         r.fieldcell('avg_amber')
         r.fieldcell('avg_cr_power')
         r.fieldcell('avg_cr_armor')
+        r.fieldcell('tot_matches')
+        r.fieldcell('won_matches')
+        r.fieldcell('lost_matches')
+        r.fieldcell('victory_rate')
+        r.fieldcell('avg_keys')
+        
+        
+        
 
     def th_order(self):
         return 'name'
 
     def th_query(self):
         return dict(column='kf_id', op='contains', val='')
+
+    def th_queryBySample(self):
+        return dict(fields=[dict(field='name',lbl='Name',width='15em'),
+                            dict(field='houses',lbl='Houses',width='15em'),
+                            dict(field='players',lbl='Players',width='15em'),
+                            dict(field='card',lbl='Card',width='15em')], cols=4, isDefault=True)
 
 
 
@@ -52,3 +66,4 @@ class Form(BaseComponent):
         fb.field('avg_amber')
         fb.field('avg_cr_power')
         fb.field('avg_cr_armor')
+   

@@ -29,6 +29,35 @@ class Table(object):
         tbl.column('avg_cr_power', dtype='N', name_long='Avg.Power')
         tbl.column('avg_cr_armor', dtype='N', name_long='Avg.Armor')
 
+        tbl.column('tot_matches', dtype = 'L', name_long = 'N.Matches')
+        tbl.column('won_matches', dtype = 'L', name_long = 'N.Won')
+        tbl.column('lost_matches', dtype = 'L', name_long = 'N.Lost')
+        tbl.column('tot_keys', dtype = 'L', name_long = 'Tot.Keys')
+
+        tbl.formulaColumn('victory_rate', '$won_matches/$tot_matches', dtype = 'N', name_long = 'Victory rate')
+        tbl.formulaColumn('avg_keys', '$tot_keys/$tot_matches', dtype = 'N', name_long = 'Avg Keys')
+
+
+        tbl.formulaColumn('frm_tot_matches', select=dict(columns='COUNT(*)', table='kftm.match', where='$win_deck_id=#THIS.kf_id OR $lose_deck_id=#THIS.kf_id'), dtype='N', name_long='Nr.Matches (FRM)')
+        tbl.formulaColumn('frm_won_matches', select=dict(columns='COUNT(*)', table='kftm.match', where='$win_deck_id=#THIS.kf_id'), dtype='N', name_long='Won Matches (FRM)')
+        tbl.formulaColumn('frm_lost_matches', select=dict(columns='COUNT(*)', table='kftm.match', where='$lose_deck_id=#THIS.kf_id'), dtype='N', name_long='Lost Matches (FRM)')
+        tbl.formulaColumn('frm_tot_keys', select=dict(columns='SUM($win_keys)+SUM($lose_keys)', table='kftm.match', where='$lose_deck_id=#THIS.kf_id OR $win_deck_id=#THIS.kf_id'), dtype='N', name_long='Tot keys (FRM)')
+
+
+    def updateTotals(self, match_record):
+        def cb_deck(r):
+            r['tot_matches']=r['frm_tot_matches']
+            r['won_matches']=r['frm_won_matches']
+            r['lost_matches']=r['frm_lost_matches']
+            r['tot_keys']=r['frm_tot_keys']
+
+        self.batchUpdate(cb_deck,
+                          columns='*,$frm_tot_matches,$frm_won_matches,$frm_lost_matches,$frm_tot_keys',
+                          where='$kf_id=:win_deck_id OR $kf_id=:lose_deck_id',
+                          win_deck_id=match_record['win_deck_id'],
+                          lose_deck_id=match_record['lose_deck_id'] )
+
+
     def importDeck(self, deck_id, short_name):
         traitsDict=self.db.table('kftm.trait').query().fetchAsDict(key='trait')
         cardTypes=self.db.table('kftm.card_type').query().fetchAsDict(key='type')

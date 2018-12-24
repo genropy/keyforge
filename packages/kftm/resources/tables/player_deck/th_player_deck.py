@@ -24,7 +24,7 @@ class ViewFromPlayer(BaseComponent):
     def th_struct(self,struct):
         r = struct.view().rows()
         r.fieldcell('deck_id', width='25em')
-        r.fieldcell('deck_houses', width='20em')
+        r.fieldcell('deck_houses', width='15em')
         r.fieldcell('@deck_id.n_creatures')
         r.fieldcell('@deck_id.n_artifacts')
         r.fieldcell('@deck_id.n_actions')
@@ -33,12 +33,20 @@ class ViewFromPlayer(BaseComponent):
         r.fieldcell('@deck_id.avg_amber')
         r.fieldcell('@deck_id.avg_cr_power')
         r.fieldcell('@deck_id.avg_cr_armor')
+        r.fieldcell('@deck_id.tot_matches', name='N.Tot')
+        r.fieldcell('@deck_id.won_matches', name='N.Won')
+        r.fieldcell('@deck_id.lost_matches', name='N.Lost')
+        r.fieldcell('@deck_id.victory_rate', name='V.Rate')
+        r.fieldcell('@deck_id.avg_keys', name='Avg.Keys')
+        
+        
         r.fieldcell('player_notes', width='100%')
 
 
 
 
 class Form(BaseComponent):
+    py_requires='deck_importer'
 
     def th_form(self, form):
         bc=form.center.borderContainer(datapath='#FORM')
