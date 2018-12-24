@@ -3,6 +3,7 @@
 import requests
 from gnr.core.gnrbag import Bag
 from gnr.core.gnrlang import getUuid
+from gnr.core.gnrdecorator import public_method
 
 
 class Table(object):
@@ -45,6 +46,47 @@ class Table(object):
         tbl.formulaColumn('frm_won_matches', select=dict(columns='COUNT(*)', table='kftm.match', where='$win_deck_id=#THIS.kf_id'), dtype='N', name_long='Won Matches (FRM)')
         tbl.formulaColumn('frm_lost_matches', select=dict(columns='COUNT(*)', table='kftm.match', where='$lose_deck_id=#THIS.kf_id'), dtype='N', name_long='Lost Matches (FRM)')
         tbl.formulaColumn('frm_tot_keys', select=dict(columns='SUM($win_keys)+SUM($lose_keys)', table='kftm.match', where='$lose_deck_id=#THIS.kf_id OR $win_deck_id=#THIS.kf_id'), dtype='N', name_long='Tot keys (FRM)')
+
+
+
+    @public_method
+    def deckSelectRpc(self,_querystring=None,_id=None,**kwargs):
+        result = Bag() 
+        #http://www.keyforgegame.com/api/decks/9d8204f7-dd7c-4bd0-9138-bb46ff9e800c/?links=cards
+        
+        if _id:
+            deck_data=self.getDeckById(_id=_id)
+        else:
+            deck_data=self.getDeckByName(_querystring=_querystring)
+        if not deck_data:
+            return None
+        for k,v in deck_data.items():
+            houses=', '.join(v['_links.houses'].digest('#v'))
+            result.addItem(k, None, id=v['id'], name=v['name'], houses=houses,_pkey=v['id'], caption=v['name'])
+        
+        return result,dict(columns='name,houses',headers='Name,Houses')
+
+    def getDeckByName(self, _querystring=None, page_size=10):
+        #try:
+        _querystring=_querystring.replace('*','')
+        if True:
+            api_url='http://www.keyforgegame.com/api/decks/?page_size=%s&search=%s' % (page_size,_querystring)
+            response=requests.get(api_url)
+            rbag= Bag()
+            rbag.fromJson(response.json())
+            return rbag['data']
+        #except Exception, e:
+        #    return Bag(dict(error=str(e)))
+
+    def getDeckById(self, _id=None):
+        #try:
+        if True:
+            response=requests.get('http://www.keyforgegame.com/api/decks/%s/?links=cards' % _id)
+            rbag= Bag()
+            rbag.fromJson(response.json())
+            return rbag['data']
+        #except Exception, e:
+        #    return Bag(dict(error=str(e)))
 
 
     def updateTotals(self, match_record):

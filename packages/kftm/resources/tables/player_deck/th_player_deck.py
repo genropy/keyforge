@@ -63,11 +63,11 @@ class Form(BaseComponent):
         
 
     def th_options(self):
-        return dict(dialog_height='600px', dialog_width='800px',
+        return dict(dialog_height='600px', dialog_width='800px',modal=True,
             defaultPrompt=dict(title='Add deck',
                                       fields=[dict(tag='remoteSelect',
                                                   value='^.deck_id',width='25em',lbl='Search new deck', auxColumns='status,auth_tags',
-                                                  method='deckSelectRpc', 
+                                                  method='_table.kftm.deck.deckSelectRpc', 
                                                   validate_notnull=True),
                                                   dict(value='^.short_name', width='25em', lbl='Short name', validate_notnull=True)], 
                                                   doSave=True))
