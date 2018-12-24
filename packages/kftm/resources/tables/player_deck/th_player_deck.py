@@ -25,8 +25,8 @@ class ViewFromPlayer(BaseComponent):
     
     def th_struct(self,struct):
         r = struct.view().rows()
-        r.fieldcell('deck_id', width='25em')
-        r.fieldcell('deck_houses', width='15em')
+        r.fieldcell('deck_id', width='15em')
+        r.fieldcell('deck_houses', width='12em')
         r.fieldcell('@deck_id.n_creatures')
         r.fieldcell('@deck_id.n_artifacts')
         r.fieldcell('@deck_id.n_actions')
@@ -66,9 +66,9 @@ class Form(BaseComponent):
         return dict(dialog_height='600px', dialog_width='800px',modal=True,
             defaultPrompt=dict(title='Add deck',
                                       fields=[dict(tag='remoteSelect',
-                                                  value='^.deck_id',width='25em',lbl='Search new deck', auxColumns='status,auth_tags',
+                                                  value='^.deck_id',width='15em',lbl='Search deck', auxColumns='status,auth_tags',
                                                   method='_table.kftm.deck.deckSelectRpc', 
                                                   validate_notnull=True),
-                                                  dict(value='^.short_name', width='25em', lbl='Short name', validate_notnull=True)], 
+                                                  dict(value='^.short_name', width='15em', lbl='Short name', validate_notnull=True)], 
                                                   doSave=True))
 

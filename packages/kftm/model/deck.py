@@ -53,16 +53,19 @@ class Table(object):
     def deckSelectRpc(self,_querystring=None,_id=None,**kwargs):
         result = Bag() 
         #http://www.keyforgegame.com/api/decks/9d8204f7-dd7c-4bd0-9138-bb46ff9e800c/?links=cards
-        
+        if len(_querystring) ==36 and '-' in _querystring:
+            _id=_querystring
         if _id:
             deck_data=self.getDeckById(_id=_id)
         else:
-            deck_data=self.getDeckByName(_querystring=_querystring)
+            deck_data=self.getDeckByName(_querystring=_querystring)['#0']
         if not deck_data:
             return None
-        for k,v in deck_data.items():
-            houses=', '.join(v['_links.houses'].digest('#v'))
-            result.addItem(k, None, id=v['id'], name=v['name'], houses=houses,_pkey=v['id'], caption=v['name'])
+        #print xxx
+        houses=', '.join(deck_data['_links.houses'].digest('#v'))
+        #for k,v in deck_data.items():
+            
+        result.addItem('r', None, id=deck_data['id'], name=deck_data['name'], houses=houses,_pkey=deck_data['id'], caption=deck_data['name'])
         
         return result,dict(columns='name,houses',headers='Name,Houses')
 
@@ -159,11 +162,3 @@ class Table(object):
         #except Exception, e:
         #    return Bag(dict(error=str(e)))
 #
-
-
-    def getDeckById(self, _id=None):
-        response=requests.get('http://www.keyforgegame.com/api/decks/%s/?links=cards' % _id)
-        rbag= Bag()
-        rbag.fromJson(response.json())
-        return rbag
-       
