@@ -56,7 +56,7 @@ class Table(object):
         if len(_querystring) ==36 and '-' in _querystring:
             _id=_querystring
         if _id:
-            deck_data=self.getDeckById(_id=_id)
+            deck_data=self.getDeckById(_id=_id)['data']
         else:
             deck_data=self.getDeckByName(_querystring=_querystring)['#0']
         if not deck_data:
@@ -81,15 +81,15 @@ class Table(object):
         #except Exception, e:
         #    return Bag(dict(error=str(e)))
 
-    def getDeckById(self, _id=None):
-        #try:
-        if True:
-            response=requests.get('http://www.keyforgegame.com/api/decks/%s/?links=cards' % _id)
-            rbag= Bag()
-            rbag.fromJson(response.json())
-            return rbag['data']
-        #except Exception, e:
-        #    return Bag(dict(error=str(e)))
+    #def getDeckById(self, _id=None):
+    #    #try:
+    #    if True:
+    #        response=requests.get('http://www.keyforgegame.com/api/decks/%s/?links=cards' % _id)
+    #        rbag= Bag()
+    #        rbag.fromJson(response.json())
+    #        return rbag['data']
+    #    #except Exception, e:
+    #    #    return Bag(dict(error=str(e)))
 
 
     def updateTotals(self, match_record):
@@ -162,3 +162,11 @@ class Table(object):
         #except Exception, e:
         #    return Bag(dict(error=str(e)))
 #
+
+
+    def getDeckById(self, _id=None):
+        response=requests.get('http://www.keyforgegame.com/api/decks/%s/?links=cards' % _id)
+        rbag= Bag()
+        rbag.fromJson(response.json())
+        return rbag
+       
