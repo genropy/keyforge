@@ -10,7 +10,7 @@ class Table(object):
     def config_db(self,pkg):
         tbl =  pkg.table('card',pkey='kf_id',name_long='Card',name_plural='Cards',caption_field='card_title', rowcaption='$card_title')
         tbl.column('kf_id',size='36',name_long='KF ID',name_short='KF ID',unique=True,indexed=True)
-        tbl.column('card_title',name_long='Card title',name_short='Title',unique=True,indexed=True)
+        tbl.column('card_title',name_long='Card title',name_short='Title', indexed=True)
         tbl.column('house',size=':7',name_long='House',name_short='House',indexed=True).relation('house.house',relation_name='cards', mode='foreignkey', onDelete='raise')
         tbl.column('card_type',size=':20',name_long='Card Type',name_short='Card Type',indexed=True).relation('card_type.type',relation_name='cards')
         tbl.column('front_image',size=':80',name_long='Front image',name_short='Image')
@@ -36,6 +36,8 @@ class Table(object):
         for c in data.values():
             if c['id'] not in existings:
                 c['kf_id']=c.pop('id')
+                if c['is_maverick']:
+                    c['card_title']= '%s M(%s)' % (c['card_title'], c['house'])
                 c['card_text']=c['card_text'].replace('\x0b',' ')
                 if c['flavor_text']:
                     c['flavor_text']=c['flavor_text'].replace('\x0b',' ')

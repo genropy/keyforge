@@ -58,7 +58,9 @@ class Table(object):
         if _id:
             deck_data=self.getDeckById(_id=_id)['data']
         else:
-            deck_data=self.getDeckByName(_querystring=_querystring)['#0']
+            deck_data=self.getDeckByName(_querystring=_querystring)
+            if deck_data:
+                deck_data=deck_data['#0']
         if not deck_data:
             return None
         #print xxx
