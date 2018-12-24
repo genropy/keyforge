@@ -62,4 +62,4 @@ class Form(BaseComponent):
         tc.contentPane(title='Decks', datapath='#FORM').plainTableHandler(relation='@decks',margin='2px', viewResource='ViewFromCard')
 
     def th_options(self):
-        return dict(dialog_height='370px', dialog_width='820px')
+        return dict(dialog_height='370px', dialog_width='820px', modal=True)

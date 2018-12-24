@@ -54,20 +54,14 @@ class View(BaseComponent):
 class Form(BaseComponent):
 
     def th_form(self, form):
-        pane = form.record
-        fb = pane.formbuilder(cols=2, border_spacing='4px')
-        #fb.field('kf_id' )
-        fb.field('name' )
-        #fb.field('expansion' )
-        fb.field('power_level' )
-        fb.field('chains' )
-        fb.field('houses')
-        fb.field('n_creatures')
-        fb.field('n_artifacts')
-        fb.field('n_actions')
-        fb.field('n_upgrades')
-        fb.field('tot_amber')
-        fb.field('avg_amber')
-        fb.field('avg_cr_power')
-        fb.field('avg_cr_armor')
-   
+        bc=form.center.borderContainer(datapath='#FORM')
+        chunkpane = bc.contentPane(region='top',border_bottom='1px solid silver', height='160px', datapath='#FORM.record')
+        chunkpane.templateChunk(table='kftm.deck',record_id='^.kf_id',
+                                position='absolute',top='3px',left='3px',right='7px',bottom='7px',padding='6px',
+                                rounded=4,background='white',border='1px solid silver', template='deck_template')
+
+        tc=bc.tabContainer(region='center')
+        tc.contentPane(title='Cards',datapath='#FORM').plainTableHandler(relation='@cards', viewResource='ViewFromDeck', nodeId='deck_cards')
+       
+    def th_options(self):
+        return dict(dialog_height='600px', dialog_width='800px',modal=True)

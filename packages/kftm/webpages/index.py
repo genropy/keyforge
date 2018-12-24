@@ -30,12 +30,14 @@ class GnrCustomWebPage(object):
                                 viewResource='ViewGeneral')
     @public_method
     def decksPane(self, pane,**kwargs):
-        pane.plainTableHandler(datapath='all_decks',
+        pane.dialogTableHandler(datapath='all_decks',
                                nodeId='all_decks', 
                                table='kftm.deck',
                                extendedQuery=True,
                                virtualStore=True,
+                               addrow=False,delrow=False,
                                view_store__onBuilt=True,
+                               formResource='Form',
                                viewResource='View')
 
     @public_method
@@ -50,13 +52,15 @@ class GnrCustomWebPage(object):
 
     @public_method
     def cardsPane(self, pane,**kwargs):
-        pane.plainTableHandler(datapath='all_cards',
+        pane.dialogTableHandler(datapath='all_cards',
                                nodeId='all_cards', 
                                table='kftm.card',
                                extendedQuery=True,
                                virtualStore=True,
+                               addrow=False,delrow=False,
                                view_store__onBuilt=True,
-                               viewResource='View')
+                               viewResource='View',
+                               formResource='Form')
 
 
         

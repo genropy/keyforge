@@ -25,7 +25,7 @@ class ViewFromPlayer(BaseComponent):
     
     def th_struct(self,struct):
         r = struct.view().rows()
-        r.fieldcell('deck_id', width='15em')
+        r.fieldcell('deck_id', width='22em')
         r.fieldcell('deck_houses', width='12em')
         r.fieldcell('@deck_id.n_creatures')
         r.fieldcell('@deck_id.n_artifacts')
