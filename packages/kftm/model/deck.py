@@ -8,7 +8,7 @@ from gnr.core.gnrdecorator import public_method
 
 class Table(object):
     def config_db(self,pkg):
-        tbl =  pkg.table('deck',pkey='kf_id',name_long='Deck',name_plural='Decks',caption_field='name', rowcaption='$name')
+        tbl =  pkg.table('deck',pkey='kf_id',name_long='Deck',name_plural='Decks',caption_field='name', rowcaption='$short_name')
         self.sysFields(tbl,id=False)
         tbl.column('kf_id',size='36',name_long='KF ID',name_short='ID',unique=True,indexed=True)
         tbl.column('name',size=':100',name_long='Deck name',name_short='Name',unique=True,indexed=True)
@@ -42,10 +42,12 @@ class Table(object):
         tbl.formulaColumn('avg_keys', 'CASE WHEN $tot_matches!=0 THEN $tot_keys/$tot_matches ELSE 0 END', dtype = 'N', name_long = 'Avg Keys')
 
 
-        tbl.formulaColumn('frm_tot_matches', select=dict(columns='COUNT(*)', table='kftm.match', where='$win_deck_id=#THIS.kf_id OR $lose_deck_id=#THIS.kf_id'), dtype='N', name_long='Nr.Matches (FRM)')
-        tbl.formulaColumn('frm_won_matches', select=dict(columns='COUNT(*)', table='kftm.match', where='$win_deck_id=#THIS.kf_id'), dtype='N', name_long='Won Matches (FRM)')
-        tbl.formulaColumn('frm_lost_matches', select=dict(columns='COUNT(*)', table='kftm.match', where='$lose_deck_id=#THIS.kf_id'), dtype='N', name_long='Lost Matches (FRM)')
-        tbl.formulaColumn('frm_tot_keys', select=dict(columns='SUM($win_keys)+SUM($lose_keys)', table='kftm.match', where='$lose_deck_id=#THIS.kf_id OR $win_deck_id=#THIS.kf_id'), dtype='N', name_long='Tot keys (FRM)')
+        tbl.formulaColumn('frm_tot_matches', select=dict(columns='COUNT(*)', table='kftm.match', where='$win_deck_id=#THIS.kf_id OR $lose_deck_id=#THIS.kf_id'), dtype='L', name_long='Nr.Matches (FRM)')
+        tbl.formulaColumn('frm_won_matches', select=dict(columns='COUNT(*)', table='kftm.match', where='$win_deck_id=#THIS.kf_id'), dtype='L', name_long='Won Matches (FRM)')
+        tbl.formulaColumn('frm_lost_matches', select=dict(columns='COUNT(*)', table='kftm.match', where='$lose_deck_id=#THIS.kf_id'), dtype='L', name_long='Lost Matches (FRM)')
+        tbl.formulaColumn('frm_won_keys', select=dict(columns='COALESCE(SUM($win_keys),0)', table='kftm.match', where='$win_deck_id=#THIS.kf_id'), dtype='L', name_long='W Keys (FRM)')
+        tbl.formulaColumn('frm_lost_keys', select=dict(columns='COALESCE(SUM($lose_keys),0)', table='kftm.match', where='$lose_deck_id=#THIS.kf_id'), dtype='L', name_long='L Keys (FRM)')
+        #tbl.formulaColumn('frm_tot_keys', select='$frm_won_keys+$frm_lost_keys', dtype='L', name_long='Tot keys (FRM)')
 
 
 
@@ -99,10 +101,10 @@ class Table(object):
             r['tot_matches']=r['frm_tot_matches']
             r['won_matches']=r['frm_won_matches']
             r['lost_matches']=r['frm_lost_matches']
-            r['tot_keys']=r['frm_tot_keys']
+            r['tot_keys']=r['frm_won_keys']+r['frm_lost_keys']
 
         self.batchUpdate(cb_deck,
-                          columns='*,$frm_tot_matches,$frm_won_matches,$frm_lost_matches,$frm_tot_keys',
+                          columns='*,$frm_tot_matches,$frm_won_matches,$frm_lost_matches,$frm_won_keys,$frm_lost_keys',
                           where='$kf_id=:win_deck_id OR $kf_id=:lose_deck_id',
                           win_deck_id=match_record['win_deck_id'],
                           lose_deck_id=match_record['lose_deck_id'] )

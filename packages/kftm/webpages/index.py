@@ -13,6 +13,11 @@ class GnrCustomWebPage(object):
                                     formResource='PlayerPage',table='kftm.player',
                                 startKey=self.rootenv['player'],
                                 margin='2px')
+        tc.contentPane(title='New result', background_color='white').thFormHandler(datapath='new_result_page',
+                                    formId='newFormResult',
+                                    formResource='ResultPage',table='kftm.match',
+                                    startKey='*newrecord*',
+                                    margin='2px')
 
         tc.contentPane(title='Matches & Results', background_color='white').remote('resultsPane',_waitingMessage=True)
         tc.contentPane(title='Decks', background_color='white').remote(self.decksPane,_waitingMessage=True)

@@ -87,3 +87,32 @@ class Form(BaseComponent):
 
     def th_options(self):
         return dict(dialog_height='150px', dialog_width='640px', modal=True)
+
+
+class ResultPage(Form):
+  
+    #def th_options(self):
+    #    return dict(showtoolbar=False, autoSave=True)
+
+     def th_form(self, form):
+        pane = form.record
+        fb = pane.formbuilder(cols=1, border_spacing='4px')
+        fb.field('date', width='7em')
+        fb.div(colspan=3)
+        fb.field('win_player', colspan=1)
+        fb.field('lose_player',  colspan=1)
+        fb.field('win_deck_id' ,colspan=1, auxColumns='$short_name,$houses', rowcaptiomn='$short_name')
+        fb.field('lose_deck_id', colspan=1,  auxColumns='$short_name,$houses', rowcaptiomn='$short_name')
+        #fb.div('Keys', colspan=2)
+        fb.field('win_keys', width='5em')
+        fb.field('lose_keys', width='5em')
+        #fb.div('Chains', colspan=2)
+        fb.field('win_chains',lbl='W.Chains', width='5em')
+        fb.field('lose_chains',lbl='L.Chains', width='5em')
+
+        bar = form.bottom.bar.replaceSlots('savebtn','mysave_btn')
+        bar.mysave_btn.button('Save and new', iconClass='fh_semaphore',
+                                  action='this.form.save({destPkey:"*newrecord*"})',
+                                  disabled='^#FORM.invalid')
+
+
