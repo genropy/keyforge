@@ -16,9 +16,13 @@ class Table(object):
         tbl.formulaColumn('frm_tot_matches', select=dict(columns='COUNT(*)', table='kftm.match', where='$win_player=#THIS.nickname OR $lose_player=#THIS.nickname'), dtype='N', name_long='Nr.Matches (FRM)')
         tbl.formulaColumn('frm_won_matches', select=dict(columns='COUNT(*)', table='kftm.match', where='$win_player=#THIS.nickname'), dtype='N', name_long='Won Matches (FRM)')
         tbl.formulaColumn('frm_lost_matches', select=dict(columns='COUNT(*)', table='kftm.match', where='$lose_player=#THIS.nickname'), dtype='N', name_long='Lost Matches (FRM)')
-        tbl.formulaColumn('frm_tot_keys', select=dict(columns='SUM($win_keys)+SUM($lose_keys)', table='kftm.match', where='$win_player=#THIS.nickname OR $lose_player=#THIS.nickname'), dtype='N', name_long='Tot keys (FRM)')
-        tbl.formulaColumn('victory_rate', 'CASE WHEN $tot_matches!=0 THEN $won_matches/$tot_matches ELSE 0 END', dtype = 'N', name_long = 'Victory rate')
-        tbl.formulaColumn('avg_keys', 'CASE WHEN $tot_matches!=0 THEN $tot_keys/$tot_matches ELSE 0 END', dtype = 'N', name_long = 'Avg Keys')
+        
+        tbl.formulaColumn('frm_won_keys', select=dict(columns='COALESCE(SUM($win_keys),0)', table='kftm.match', where='$win_player=#THIS.nickname'), dtype='L', name_long='W Keys (FRM)')
+        tbl.formulaColumn('frm_lost_keys', select=dict(columns='COALESCE(SUM($lose_keys),0)', table='kftm.match', where='$lose_player=#THIS.nickname'), dtype='L', name_long='L Keys (FRM)')
+
+        #tbl.formulaColumn('frm_tot_keys', select='$frm_won_keys+$frm_lost_keys', table='kftm.match', dtype='N', name_long='Tot keys (FRM)')
+        tbl.formulaColumn('victory_rate', 'CASE WHEN $tot_matches>0 THEN $won_matches/$tot_matches ELSE 0 END', dtype = 'N', name_long = 'Victory rate')
+        tbl.formulaColumn('avg_keys', 'CASE WHEN $tot_matches>0 THEN $tot_keys/$tot_matches ELSE 0 END', dtype = 'N', name_long = 'Avg Keys')
 
 
 
@@ -27,10 +31,10 @@ class Table(object):
             r['tot_matches']=r['frm_tot_matches']
             r['won_matches']=r['frm_won_matches']
             r['lost_matches']=r['frm_lost_matches']
-            r['tot_keys']=r['frm_tot_keys']
+            r['tot_keys']=r['frm_won_keys']+r['frm_lost_keys']
 
         self.batchUpdate(cb_deck,
-                          columns='*,$frm_tot_matches,$frm_won_matches,$frm_lost_matches,$frm_tot_keys',
+                          columns='*,$frm_tot_matches,$frm_won_matches,$frm_lost_matches,$frm_won_keys,$frm_lost_keys',
                           where='$nickname=:win_player OR $nickname=:lose_player',
                           win_player=match_record['win_player'],
                           lose_player=match_record['lose_player'])
