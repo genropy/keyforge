@@ -26,7 +26,8 @@ class ViewFromPlayer(BaseComponent):
     def th_struct(self,struct):
         r = struct.view().rows()
         r.fieldcell('deck_id', width='22em')
-        r.fieldcell('deck_houses', width='12em')
+        r.fieldcell('deck_houses', width='16em')
+        r.fieldcell('@deck_id.short_name', width='12em')
         r.fieldcell('@deck_id.n_creatures')
         r.fieldcell('@deck_id.n_artifacts')
         r.fieldcell('@deck_id.n_actions')
@@ -52,11 +53,13 @@ class Form(BaseComponent):
 
     def th_form(self, form):
         bc=form.center.borderContainer(datapath='#FORM')
+
         chunkpane = bc.contentPane(region='top',border_bottom='1px solid silver', height='160px', datapath='#FORM.record')
         chunkpane.templateChunk(table='kftm.deck',record_id='^.deck_id',
                                 position='absolute',top='3px',left='3px',right='7px',bottom='7px',padding='6px',
                                 rounded=4,background='white',border='1px solid silver', template='deck_template')
-
+        fb=bc.contentPane(region='bottom', datapath='#FORM.record', height='30px').formbuilder(cols=1)
+        fb.field('@deck_id.short_name')
         tc=bc.tabContainer(region='center')
         tc.contentPane(title='Cards',datapath='#FORM').plainTableHandler(table='kftm.deck_card', condition='$deck_id=:deck_id', condition_deck_id='^#FORM.record.deck_id', viewResource='ViewFromDeck')
         tc.contentPane(title='Notes',datapath='#FORM.record').simpleTextArea(value='^.player_notes', height='90%', width='95%', editor=True)
