@@ -21,9 +21,10 @@ class Table(object):
         tbl.formulaColumn('frm_lost_keys', select=dict(columns='COALESCE(SUM($lose_keys),0)', table='kftm.match', where='$lose_player=#THIS.nickname'), dtype='L', name_long='L Keys (FRM)')
 
         #tbl.formulaColumn('frm_tot_keys', select='$frm_won_keys+$frm_lost_keys', table='kftm.match', dtype='N', name_long='Tot keys (FRM)')
-        tbl.formulaColumn('victory_rate', 'CASE WHEN $tot_matches>0 THEN $won_matches/$tot_matches ELSE 0 END', dtype = 'N', name_long = 'Victory rate')
-        tbl.formulaColumn('avg_keys', 'CASE WHEN $tot_matches>0 THEN $tot_keys/$tot_matches ELSE 0 END', dtype = 'N', name_long = 'Avg Keys')
-
+        tbl.formulaColumn('victory_rate', 'CASE WHEN $tot_matches>0 THEN CAST ($won_matches AS FLOAT ) / CAST ($tot_matches AS FLOAT) ELSE 0 END', dtype = 'N', name_long = 'Victory rate')
+        tbl.formulaColumn('avg_keys', 'CASE WHEN $tot_matches>0 THEN CAST( $tot_keys AS FLOAT) /CAST ($tot_matches AS FLOAT) ELSE 0 END', dtype = 'N', name_long = 'Avg Keys')
+        tbl.formulaColumn('n_decks', select=dict(columns="COUNT(*)", table='kftm.player_deck', where='$player=#THIS.nickname'), name_long='N.Decks')
+        tbl.aliasColumn('pl_decks', '@decks.@deck_id.short_name', name_long='Pl.Decks', aggregator=', ')
 
 
     def updateTotals(self, match_record):

@@ -19,7 +19,7 @@ class Table(object):
         tbl.formulaColumn('frm_tot_matches', select=dict(columns='SUM($tot_matches)', table='kftm.deck', where='@houses.house=:#THIS.house'), dtype='N', name_long='Nr.Matches (FRM)')
         tbl.formulaColumn('frm_won_matches', select=dict(columns='SUM($won_matches)', table='kftm.deck', where='@houses.house=:#THIS.house'), dtype='N', name_long='Won Matches (FRM)')
         tbl.formulaColumn('frm_lost_matches', select=dict(columns='SUM($lost_matches)', table='kftm.deck', where='@houses.house=:#THIS.house'), dtype='N', name_long='Lost Matches (FRM)')
-        tbl.formulaColumn('frm_tot_keys', select=dict(columns='SUM($tot_keys)', table='kftm.deck', where='@houses.house=:#THIS.house'), dtype='N', name_long='Tot keys (FRM)')
+        #tbl.formulaColumn('frm_tot_keys', select=dict(columns='SUM($tot_keys)', table='kftm.deck', where='@houses.house=:#THIS.house'), dtype='N', name_long='Tot keys (FRM)')
         tbl.formulaColumn('frm_win_ratio', '$frm_won_matches/$frm_tot_matches', dtype='N', name_long='Win ratio')
         tbl.formulaColumn('frm_key_ratio', '$frm_tot_keys/$frm_tot_matches', dtype='N', name_long='Win ratio')
 

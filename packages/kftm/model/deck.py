@@ -38,8 +38,8 @@ class Table(object):
         tbl.aliasColumn('players', '@players.player', name_long='Players')
         tbl.aliasColumn('cards', '@cards.card_title', name_long='Cards')
 
-        tbl.formulaColumn('victory_rate', 'CASE WHEN $tot_matches>0 THEN $won_matches/$tot_matches ELSE 0 END', dtype = 'N', name_long = 'Victory rate')
-        tbl.formulaColumn('avg_keys', 'CASE WHEN $tot_matches>0 THEN $tot_keys/$tot_matches ELSE 0 END', dtype = 'N', name_long = 'Avg Keys')
+        tbl.formulaColumn('victory_rate', 'CASE WHEN $tot_matches>0 THEN CAST ($won_matches AS FLOAT ) / CAST ($tot_matches AS FLOAT) ELSE 0 END', dtype = 'N', name_long = 'Victory rate')
+        tbl.formulaColumn('avg_keys', 'CASE WHEN $tot_matches>0 THEN CAST( $tot_keys AS FLOAT) /CAST ($tot_matches AS FLOAT) ELSE 0 END', dtype = 'N', name_long = 'Avg Keys')
 
 
         tbl.formulaColumn('frm_tot_matches', select=dict(columns='COUNT(*)', table='kftm.match', where='$win_deck_id=#THIS.kf_id OR $lose_deck_id=#THIS.kf_id'), dtype='L', name_long='Nr.Matches (FRM)')

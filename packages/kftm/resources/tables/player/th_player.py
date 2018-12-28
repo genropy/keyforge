@@ -13,12 +13,14 @@ class View(BaseComponent):
         r.fieldcell('nickname')
         r.fieldcell('firstname')
         r.fieldcell('lastname')
-        r.fieldcell('tot_matches', name = 'Nr.Tot')
-        r.fieldcell('won_matches', name = 'Won')
-        r.fieldcell('lost_matches', name = 'Lost')
-        r.fieldcell('tot_keys', name = 'Tot.Keys')
+        r.fieldcell('tot_matches', name = 'Nr.Tot', width='6em')
+        r.fieldcell('won_matches', name = 'Won',  width='6em')
+        r.fieldcell('lost_matches', name = 'Lost',  width='6em')
+        r.fieldcell('tot_keys', name = 'Tot.Keys', width='6em')
         r.fieldcell('victory_rate')
-        r.fieldcell('avg_keys')
+        r.fieldcell('n_decks')
+        r.fieldcell('pl_decks', width='100%')
+
 
     def th_order(self):
         return 'nickname'
