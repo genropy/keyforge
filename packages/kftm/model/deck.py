@@ -34,13 +34,21 @@ class Table(object):
         tbl.column('won_matches', dtype = 'L', name_long = 'N.Won')
         tbl.column('lost_matches', dtype = 'L', name_long = 'N.Lost')
         tbl.column('tot_keys', dtype = 'L', name_long = 'Tot.Keys')
+        tbl.column('external_site_url', name_long = 'External Site')
 
         tbl.aliasColumn('players', '@players.player', name_long='Players')
         tbl.aliasColumn('cards', '@cards.card_title', name_long='Cards')
 
         tbl.formulaColumn('victory_rate', 'CASE WHEN $tot_matches>0 THEN CAST ($won_matches AS FLOAT ) / CAST ($tot_matches AS FLOAT) ELSE 0 END', dtype = 'N', name_long = 'Victory rate')
         tbl.formulaColumn('avg_keys', 'CASE WHEN $tot_matches>0 THEN CAST( $tot_keys AS FLOAT) /CAST ($tot_matches AS FLOAT) ELSE 0 END', dtype = 'N', name_long = 'Avg Keys')
+        tbl.formulaColumn('fast_ambers', select=dict(columns='SUM(@card_id.fast_amber)', table='kftm.deck_card', where='$deck_id=#THIS.kf_id'), dtype='N', name_long='Fast ambers')
+        tbl.formulaColumn('n_rares', select=dict(columns='COUNT(*)',  table='kftm.deck_card', where="$deck_id=#THIS.kf_id AND @card_id.rarity='rare'"), dtype='N',  name_long='N.Rares')
 
+        tbl.formulaColumn('n_uncommon', select=dict(columns='COUNT(*)',  table='kftm.deck_card', where="$deck_id=#THIS.kf_id AND @card_id.rarity='uncommon'"), dtype='N',  name_long='N.Uncommon')
+
+        tbl.formulaColumn('n_mavericks', select=dict(columns='COUNT(*)',  table='kftm.deck_card', where="$deck_id=#THIS.kf_id AND @card_id.is_maverick IS TRUE"), dtype='N',  name_long='N.Maverick')
+        tbl.formulaColumn('n_super', select=dict(columns='COUNT(*)',  table='kftm.deck_card', where="$deck_id=#THIS.kf_id AND @card_id.super IS TRUE"), dtype='N',  name_long='N.Super')
+        tbl.formulaColumn('n_situational', select=dict(columns='COUNT(*)',  table='kftm.deck_card', where="$deck_id=#THIS.kf_id AND @card_id.situational IS TRUE"), dtype='N',  name_long='N.Sit')
 
         tbl.formulaColumn('frm_tot_matches', select=dict(columns='COUNT(*)', table='kftm.match', where='$win_deck_id=#THIS.kf_id OR $lose_deck_id=#THIS.kf_id'), dtype='L', name_long='Nr.Matches (FRM)')
         tbl.formulaColumn('frm_won_matches', select=dict(columns='COUNT(*)', table='kftm.match', where='$win_deck_id=#THIS.kf_id'), dtype='L', name_long='Won Matches (FRM)')
@@ -110,7 +118,7 @@ class Table(object):
                           lose_deck_id=match_record['lose_deck_id'] )
 
 
-    def importDeck(self, deck_id, short_name):
+    def importDeck(self, deck_id, short_name=None):
         traitsDict=self.db.table('kftm.trait').query().fetchAsDict(key='trait')
         cardTypes=self.db.table('kftm.card_type').query().fetchAsDict(key='type')
         deck_card_tbl=self.db.table('kftm.deck_card')
@@ -173,4 +181,3 @@ class Table(object):
         rbag= Bag()
         rbag.fromJson(response.json())
         return rbag
-       

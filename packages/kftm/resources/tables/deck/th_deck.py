@@ -9,7 +9,7 @@ from time import sleep
 
 
 class View(BaseComponent):
-
+    py_requires='deck_importer:DeckImporter'
     #def th_hiddencolumns(self):
     #    return '$players,$cards,$traits'
 
@@ -23,6 +23,11 @@ class View(BaseComponent):
         r.fieldcell('n_artifacts')
         r.fieldcell('n_actions')
         r.fieldcell('n_upgrades')
+        r.fieldcell('n_rares')
+        r.fieldcell('n_uncommon')
+        r.fieldcell('n_mavericks')
+        r.fieldcell('n_super')
+        r.fieldcell('n_situational')
         r.fieldcell('tot_amber')
         r.fieldcell('avg_amber')
         r.fieldcell('avg_cr_power')
@@ -50,7 +55,6 @@ class View(BaseComponent):
                             dict(field='deck_traits',lbl='Traits',width='10em')], cols=5, isDefault=True)
 
 
-
 class Form(BaseComponent):
 
     def th_form(self, form):
@@ -61,9 +65,13 @@ class Form(BaseComponent):
                                 rounded=4,background='white',border='1px solid silver', template='deck_template')
 
         tc=bc.tabContainer(region='center')
-        tc.contentPane(title='Cards',datapath='#FORM').plainTableHandler(relation='@cards', viewResource='ViewFromDeck', nodeId='deck_cards')
+        tc.contentPane(title='Cards',datapath='#FORM').borderTableHandler(relation='@cards',vpane_region='left',
+                                viewResource='ViewFromDeck', nodeId='deck_cards')
        
+    #def th_options(self):
+    #    return dict(dialog_height='600px', dialog_width='800px',modal=True)
+
+
     def th_options(self):
-        return dict(dialog_height='600px', dialog_width='800px',modal=True)
-
-
+        return dict(dialog_height='600px', dialog_width='800px')
+            

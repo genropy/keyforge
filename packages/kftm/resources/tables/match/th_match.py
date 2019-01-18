@@ -13,7 +13,6 @@ class View(BaseComponent):
         r.fieldcell('players_title', width='15em')
         r.fieldcell('@win_deck_id.short_name', width='10em', name='W.Deck')
         r.fieldcell('@lose_deck_id.short_name', width='10em',  name='L.Deck')
-        r.fieldcell('players_title', width='15em')
         r.fieldcell('decks_houses_title', width='100%')
         r.fieldcell('result', width='5em')
         r.fieldcell('win_chains', name='W.Ch', width='5em')

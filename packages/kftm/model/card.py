@@ -25,6 +25,10 @@ class Table(object):
         tbl.column('expansion',dtype='I',name_long='Expansion',name_short='Expansion')
         tbl.column('is_maverick',dtype='B',name_long='Is Maverick',name_short='Maverick')
         tbl.column('flavor_text',name_long='Flavor text',name_short='Flavor text')
+        tbl.column('func_tags', name_long='Game tags')
+        tbl.column('super', dtype='B', name_long='Super')
+        tbl.column('situational', dtype='B', name_long='Situational')
+        tbl.formulaColumn('fast_amber', "CASE WHEN $card_type='Upgrade' THEN 0 ELSE $amber END", dtype='I', name_long='Fast amber')
 
 
     def importFromDeck(self, data, traitsDict=None):

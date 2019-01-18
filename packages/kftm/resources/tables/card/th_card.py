@@ -39,13 +39,6 @@ class Form(BaseComponent):
 
     def th_form(self, form):
         bc = form.center.borderContainer( datapath='#FORM.record')
-        #card_bc=bc.borderContainer(region='top', height='350px',)
-        #templateChunk(template='^.template',
-        #                    table='asso.messaggio',
-        #                    editable=True,dataProvider=rpc,
-        #                    datasource='^#FORM.messaggio_esempio.record',
-        #                    selfsubscribe_onChunkEdit='this.form.save();')
-       
         bc.contentPane(region='left', width='210px', title='Image',margin='8px').img(src='^.front_image', width='200px', margin='2px')
         tc=bc.tabContainer(region='center')
         fb = tc.contentPane(region='center', title='Card data',margin='10px').formbuilder(cols=3, border_spacing='4px', readOnly=True, fld_readOnly=True)
@@ -59,7 +52,16 @@ class Form(BaseComponent):
         fb.field('armor' ,width='4em')
         fb.field('card_text_only', colspan=3, width='39em', tag='simpleTextArea', height='12ex', lbl='Text')
         fb.field('flavor_text', colspan=3, width='39em', tag='simpleTextArea', height='12ex')
+        self.functionTags(tc.contentPane(title='Function tags', datapath='#FORM.record'))
         tc.contentPane(title='Decks', datapath='#FORM').plainTableHandler(relation='@decks',margin='2px', viewResource='ViewFromCard')
+    
+    def functionTags(self, pane):
+        fb = pane.formbuilder(cols=1, width='100%')
+        fb.checkboxtext(value='^.func_tags',
+                        colspan=1, cols=2,
+                        caption_field='description',
+                        table='kftm.func_tag')
 
+    
     def th_options(self):
         return dict(dialog_height='370px', dialog_width='820px', modal=True)

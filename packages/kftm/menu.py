@@ -19,3 +19,5 @@ def config(root,application=None):
     kftm.thpage('player_deck',table='kftm.player_deck')
     kftm.thpage('Deck cards',table='kftm.deck_card')
     kftm.thpage('Matches & Results',table='kftm.match')
+    kftm.lookups('Lookup tables',lookup_manager='kftm')
+
