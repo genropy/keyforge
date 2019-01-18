@@ -28,6 +28,8 @@ class Table(object):
         tbl.column('func_tags', name_long='Game tags')
         tbl.column('super', dtype='B', name_long='Super')
         tbl.column('situational', dtype='B', name_long='Situational')
+        tbl.column('external_site_url', name_long = 'External Site URL')
+        
         tbl.formulaColumn('fast_amber', "CASE WHEN $card_type='Upgrade' THEN 0 ELSE $amber END", dtype='I', name_long='Fast amber')
 
 

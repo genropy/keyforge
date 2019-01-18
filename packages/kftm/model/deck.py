@@ -34,7 +34,7 @@ class Table(object):
         tbl.column('won_matches', dtype = 'L', name_long = 'N.Won')
         tbl.column('lost_matches', dtype = 'L', name_long = 'N.Lost')
         tbl.column('tot_keys', dtype = 'L', name_long = 'Tot.Keys')
-        tbl.column('external_site_url', name_long = 'External Site')
+        tbl.column('external_site_url', name_long = 'External Site URL')
 
         tbl.aliasColumn('players', '@players.player', name_long='Players')
         tbl.aliasColumn('cards', '@cards.card_title', name_long='Cards')

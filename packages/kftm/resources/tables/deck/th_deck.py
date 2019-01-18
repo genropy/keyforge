@@ -66,7 +66,7 @@ class Form(BaseComponent):
 
         tc=bc.tabContainer(region='center')
         tc.contentPane(title='Cards',datapath='#FORM').borderTableHandler(relation='@cards',vpane_region='left',
-                                viewResource='ViewFromDeck', nodeId='deck_cards')
+                                viewResource='ViewFromDeck', nodeId='deck_cards', addrow=False, delrow=False)
        
     #def th_options(self):
     #    return dict(dialog_height='600px', dialog_width='800px',modal=True)
