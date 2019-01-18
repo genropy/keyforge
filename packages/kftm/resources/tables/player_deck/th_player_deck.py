@@ -61,12 +61,15 @@ class Form(BaseComponent):
         fb=bc.contentPane(region='bottom', datapath='#FORM.record', height='30px').formbuilder(cols=1)
         fb.field('@deck_id.short_name')
         tc=bc.tabContainer(region='center')
-        tc.contentPane(title='Cards',datapath='#FORM').plainTableHandler(table='kftm.deck_card', condition='$deck_id=:deck_id', condition_deck_id='^#FORM.record.deck_id', viewResource='ViewFromDeck')
+        tc.contentPane(title='Cards',datapath='#FORM').borderTableHandler(condition='$deck_id=:deck_id',table='kftm.deck_card',
+                                condition_deck_id='^#FORM.record.deck_id', vpane_region='left',addrow=False,delrow=False,
+                                viewResource='ViewFromDeck',
+                                nodeId='deck_cards')
         tc.contentPane(title='Notes',datapath='#FORM.record').simpleTextArea(value='^.player_notes', height='90%', width='95%', editor=True)
         
 
     def th_options(self):
-        return dict(dialog_height='600px', dialog_width='800px',modal=True,
+        return dict(dialog_windowRatio=.9,
             defaultPrompt=dict(title='Add deck',
                                       fields=[dict(tag='remoteSelect',
                                                   value='^.deck_id',width='15em',lbl='Search deck', auxColumns='status,auth_tags',

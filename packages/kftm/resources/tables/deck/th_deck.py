@@ -73,5 +73,5 @@ class Form(BaseComponent):
 
 
     def th_options(self):
-        return dict(dialog_height='600px', dialog_width='800px')
+        return dict(dialog_windowRatio=.9)
             
