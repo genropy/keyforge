@@ -39,6 +39,8 @@ class ViewFromBenchmark(BaseComponent):
         r.fieldcell('@deck_id.n_mavericks',width='7em')
         r.fieldcell('@deck_id.n_super',width='7em')
         r.fieldcell('@deck_id.n_situational',width='7em')
+        r.fieldcell('@deck_id.n_rares',width='7em')
+        r.fieldcell('@deck_id.n_uncommon',width='7em')
         r.fieldcell('notes', width='100%')
 
 

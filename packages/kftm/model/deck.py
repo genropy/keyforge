@@ -45,6 +45,7 @@ class Table(object):
         tbl.formulaColumn('n_rares', select=dict(columns='COUNT(*)',  table='kftm.deck_card', where="$deck_id=#THIS.kf_id AND @card_id.rarity='rare'"), dtype='N',  name_long='N.Rares')
 
         tbl.formulaColumn('n_uncommon', select=dict(columns='COUNT(*)',  table='kftm.deck_card', where="$deck_id=#THIS.kf_id AND @card_id.rarity='uncommon'"), dtype='N',  name_long='N.Uncommon')
+        #tbl.formulaColumn('n_amber_control', select=dict(columns='COUNT(*)',  table='kftm.deck_card', where="$deck_id=#THIS.kf_id AND @card_id.func_tags='uncommon'"), dtype='N',  name_long='N.Uncommon')
 
         tbl.formulaColumn('n_mavericks', select=dict(columns='COUNT(*)',  table='kftm.deck_card', where="$deck_id=#THIS.kf_id AND @card_id.is_maverick IS TRUE"), dtype='N',  name_long='N.Maverick')
         tbl.formulaColumn('n_super', select=dict(columns='COUNT(*)',  table='kftm.deck_card', where="$deck_id=#THIS.kf_id AND @card_id.super IS TRUE"), dtype='N',  name_long='N.Super')
